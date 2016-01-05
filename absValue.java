@@ -15,7 +15,7 @@ public class absValue {
 		return mymap.size();
 	}
 
-	public static int solution1(int[] A)
+	public static int solution1(int[] A) //if all values are distinct only then this method would work
 	{
 		int counter=A.length-1;
 		int val=0;
@@ -27,7 +27,6 @@ public class absValue {
 			{
 				while(Math.abs(A[i])<Math.abs(A[counter]))
 					counter--;
-				System.out.println(Math.abs(A[i]));
 			}
 			else
 				{
@@ -48,9 +47,7 @@ public class absValue {
 		int [] arr= {0, 1,1,2};
 		int val=solution(arr);
 
-		int val1=solution1(arr);
 		System.out.println("Solution: "+val);
-		System.out.println("Efficient Solution: "+(arr.length-val1));
 
 		
 	}
