@@ -7,9 +7,7 @@ public class fibFrog {
 	
 	static HashMap<Integer, Integer> myhash = new HashMap<Integer,Integer>();
 	static HashSet<Integer> myset = new HashSet<Integer>();
-	
-
-	
+		
 	 public static void fib()
 	 {	myhash.put(0,0);
 	    myhash.put(1,1);
@@ -31,18 +29,28 @@ public class fibFrog {
 	 
 	 
 	 public static int solution(int[] A)
-	 {	 int[] copy=A.clone();
+	 {	 
+		 int jumps=0;
+		 int[] copy=A.clone();
 		 int curr=-1;
 		 int remainJump=A.length-curr;
-	 	 int jumps=0;
+	 	 
 	 	 
 		 if(myset.contains(remainJump))
-		 			return jumps+1;
+		 			{
+					 remainJump=0;		
+					 jumps++;
+					 return jumps;
+		 			}
 		 
 		 for(int i=A.length-1;i>curr;i--)
 		 {		
 			 if(myset.contains(remainJump))
-	 			return jumps+1;
+			 {
+				 remainJump=0;			
+				 jumps++;
+				 return jumps;				 
+	 			}
 		 
 			 if(A[i]==1 && myset.contains(i-curr))
 			 {	// System.out.println(A[i]);
@@ -53,21 +61,32 @@ public class fibFrog {
 				 System.out.println("Curr: "+curr);
 				 System.out.println("Remaining Jumps: "+remainJump);
 
-
 			 }
 			 
 		 }
 		 if(remainJump!=0 && myset.contains(remainJump))
-	 			return jumps+1;
+		 {
+			 remainJump=0;	
+			 jumps++;
+			 
+ 			}
+		 if(remainJump!=0)
+			 jumps=0;
+		 
 		 if( curr != -1)
-		 {	 jumps+=1;
+		 {	 
 			 copy[curr]=0;
-			 int newjump=solution(copy);
-			 if (jumps>newjump && newjump != -1)
+			 int newjump=solution(copy);				//recursion
+			 System.out.println("New Jumps: "+newjump);
+
+			 if ((jumps>newjump && newjump > 0) || jumps==0 && newjump>0)
 				 jumps=newjump;
+			 
 		 }
-		 if(curr==-1)
+		 
+		 if(remainJump!=0 & jumps==0)
 			 return -1;
+		 
 		 return jumps;
 	 }
 	 
@@ -76,9 +95,10 @@ public class fibFrog {
 		 fib();
 		 int [] arr={0,0,0,1,1,0,1,0,0,0,0};
 		 int[] arr1={1,1,0,0,0};
+		 int[] arr2={1,1,1};
 		 
 	 
-		 System.out.println("Total Jumps: "+solution(arr));
+		 System.out.println("Total Jumps: "+solution(arr2));
 		 
 	 }
 }
