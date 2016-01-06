@@ -64,12 +64,7 @@ public class fibFrog {
 			 }
 			 
 		 }
-		 if(remainJump!=0 && myset.contains(remainJump))
-		 {
-			 remainJump=0;	
-			 jumps++;
-			 
- 			}
+		
 		 if(remainJump!=0)
 			 jumps=0;
 		 
@@ -98,7 +93,7 @@ public class fibFrog {
 		 int[] arr2={1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};
 		 
 	 
-		 System.out.println("Total Jumps: "+solution(arr2));
+		 System.out.println("Total Jumps: "+solution(arr));
 		 
 	 }
 }
