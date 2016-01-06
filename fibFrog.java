@@ -31,7 +31,7 @@ public class fibFrog {
 	 
 	 
 	 public static int solution(int[] A)
-	 {	 
+	 {	 int[] copy=A.clone();
 		 int curr=-1;
 		 int remainJump=A.length-curr;
 	 	 int jumps=0;
@@ -43,18 +43,30 @@ public class fibFrog {
 		 {		
 			 if(myset.contains(remainJump))
 	 			return jumps+1;
-			 
 		 
 			 if(A[i]==1 && myset.contains(i-curr))
-			 {	
+			 {	// System.out.println(A[i]);
 				 jumps++;
 				 curr=i;
 				 remainJump = A.length-curr ;
-				 i=A.length-1;
+				 i=A.length;
 				 System.out.println("Curr: "+curr);
+				 System.out.println("Remaining Jumps: "+remainJump);
+
+
 			 }
+			 
 		 }
-		 if(remainJump!=0)
+		 if(remainJump!=0 && myset.contains(remainJump))
+	 			return jumps+1;
+		 if( curr != -1)
+		 {	 jumps+=1;
+			 copy[curr]=0;
+			 int newjump=solution(copy);
+			 if (jumps>newjump && newjump != -1)
+				 jumps=newjump;
+		 }
+		 if(curr==-1)
 			 return -1;
 		 return jumps;
 	 }
@@ -62,7 +74,8 @@ public class fibFrog {
 	 public static void main(String[] args)
 	 {
 		 fib();
-		 int [] arr={0,0,0};
+		 int [] arr={0,0,0,1,1,0,1,0,0,0,0};
+		 int[] arr1={1,1,0,0,0};
 		 
 	 
 		 System.out.println("Total Jumps: "+solution(arr));
