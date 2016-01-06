@@ -49,7 +49,7 @@ public class fibFrog {
 			 {
 				 remainJump=0;			
 				 jumps++;
-				 return jumps;				 
+				 break;			 
 	 			}
 		 
 			 if(A[i]==1 && myset.contains(i-curr))
@@ -76,8 +76,8 @@ public class fibFrog {
 		 if( curr != -1)
 		 {	 
 			 copy[curr]=0;
-			 int newjump=solution(copy);				//recursion
-			 System.out.println("New Jumps: "+newjump);
+			 int newjump=solution(copy);				//Recursion
+			 //System.out.println("New Jumps: "+newjump);
 
 			 if ((jumps>newjump && newjump > 0) || jumps==0 && newjump>0)
 				 jumps=newjump;
@@ -95,7 +95,7 @@ public class fibFrog {
 		 fib();
 		 int [] arr={0,0,0,1,1,0,1,0,0,0,0};
 		 int[] arr1={1,1,0,0,0};
-		 int[] arr2={1,1,1};
+		 int[] arr2={1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1};
 		 
 	 
 		 System.out.println("Total Jumps: "+solution(arr2));
