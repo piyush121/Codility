@@ -41,8 +41,6 @@ public class CountDistinctSlices {
 			if(i==A.length-1)
 			{
 				myhash.clear();
-				i=j;
-				j++;
 			}
 			i++;
 		}
@@ -50,10 +48,35 @@ public class CountDistinctSlices {
 		return slices;
 		
 	}
+	
+	public static int solution1(int M, int A[], int N)
+	{	int j=0;
+		int slices=0;
+		HashSet<Integer> myhash=new HashSet<>();
+		for(int i=0;i<A.length;i++)
+		{
+			if(!myhash.contains(A[i]))
+				{	
+					myhash.add(A[i]);
+					j++;
+				}
+			else 
+			{	
+				myhash.clear();
+				myhash.add(A[i]);
+				slices+=j*(j+1)/2;
+				j=1;
+				
+			}
+			
+		}
+		slices+=j*(j+1)/2;
+		return slices;
+	}
 
 	public static void main(String[] args)
 	{
 		int[] arr={3,4,5,5,2};
-		System.out.println(solution(6, arr, 5));
+		System.out.println(solution1(6, arr, 5));
 	}
 }
