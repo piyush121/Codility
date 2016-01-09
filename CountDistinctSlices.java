@@ -76,7 +76,7 @@ public class CountDistinctSlices {
 
 	public static void main(String[] args)
 	{
-		int[] arr={3,4,5,5,2};
+		int[] arr={3,4,5,5,5};
 		System.out.println(solution1(6, arr, 5));
 	}
 }
