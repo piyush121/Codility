@@ -1,7 +1,7 @@
 package Codility;
 import java.util.*;
 
-public class solution {
+public class StoneWall {
     public static int solution1(int[] H) {
         // write your code in Java SE 8
         int count=1;
