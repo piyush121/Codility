@@ -50,39 +50,44 @@ public class CountDistinctSlices {
 	}
 	
 	public static int solution1(int M, int A[])
-	{	int j=0;			//Back end of the catterpiller
-		int tmp=0;
+	{	int i=0;			//Back end of the catterpiller
+		int j=0;
 	    int count=0;		//counting number of distinct numbers seen so far
 		int slices=0;		// hmmm.
 		HashSet<Integer> myhash=new HashSet<>(M+1);		// to check already seen values.
-		for(int i=0;i<A.length;i++)
-		{
+		for(i=0;i<A.length;i++)
+		{	
 			if(!myhash.contains(A[i]))
 				{	
 					myhash.add(A[i]);
-					count++;
-					
+					slices++;
 				}
 			else 
-			{	while(A[j]!=A[i])
-					j++;
-				slices+=i-j-1;
+			{	while(j<i)
+					{
+						slices+=i-j;
+						j++;
+					}
 				myhash.clear();
 				myhash.add(A[i]);
-				slices+=count*(count+1)/2;
-				j=i;
-				count=1;
-				
-			}
+				count=0;
+				slices++;
+				}
 			
 		}
-		slices+=count*(count+1)/2;
+		if(i==A.length-1)
+			while(j<i)
+			{
+				slices+=i-j-1;
+				j++;
+			}
+				
 		return slices;
 	}
 
 	public static void main(String[] args)
 	{
-		int[] arr={3,5,3,6};
+		int[] arr={3,4,5,5,2};
 		System.out.println(solution1(6, arr));
 	}
 }

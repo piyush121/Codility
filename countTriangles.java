@@ -3,7 +3,7 @@ package Codility;
 import java.util.Arrays;
 
 public class countTriangles {
-	public static int solution(int[] A)
+	public static int solution(int[] A)					//O n^2 coz we don't need to set k again after 2nd loop.
 	{	
 		Arrays.sort(A);
 		int i,j,k,count=0;
