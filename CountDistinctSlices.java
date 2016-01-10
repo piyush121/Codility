@@ -19,7 +19,7 @@ There are exactly nine distinct slices: (0, 0), (0, 1), (0, 2), (1, 1), (1, 2), 
 */
 public class CountDistinctSlices {
 	
-	public static int solution(int M, int A[], int N)
+	public static int solution(int M, int A[])
 	{	int slices=0;
 		int j=0;
 		HashSet<Integer> myhash=new HashSet<>();
@@ -29,9 +29,7 @@ public class CountDistinctSlices {
 				{	
 					myhash.add(A[i]);
 					slices++;
-
 				}
-			
 			else 
 				{	
 					myhash.clear();
@@ -41,6 +39,8 @@ public class CountDistinctSlices {
 			if(i==A.length-1)
 			{
 				myhash.clear();
+				i=j;
+				j++;
 			}
 			i++;
 		}
@@ -49,34 +49,40 @@ public class CountDistinctSlices {
 		
 	}
 	
-	public static int solution1(int M, int A[], int N)
-	{	int j=0;
-		int slices=0;
-		HashSet<Integer> myhash=new HashSet<>();
+	public static int solution1(int M, int A[])
+	{	int j=0;			//Back end of the catterpiller
+		int tmp=0;
+	    int count=0;		//counting number of distinct numbers seen so far
+		int slices=0;		// hmmm.
+		HashSet<Integer> myhash=new HashSet<>(M+1);		// to check already seen values.
 		for(int i=0;i<A.length;i++)
 		{
 			if(!myhash.contains(A[i]))
 				{	
 					myhash.add(A[i]);
-					j++;
+					count++;
+					
 				}
 			else 
-			{	
+			{	while(A[j]!=A[i])
+					j++;
+				slices+=i-j-1;
 				myhash.clear();
 				myhash.add(A[i]);
-				slices+=j*(j+1)/2;
-				j=1;
+				slices+=count*(count+1)/2;
+				j=i;
+				count=1;
 				
 			}
 			
 		}
-		slices+=j*(j+1)/2;
+		slices+=count*(count+1)/2;
 		return slices;
 	}
 
 	public static void main(String[] args)
 	{
-		int[] arr={3,4,5,5,5};
-		System.out.println(solution1(6, arr, 5));
+		int[] arr={3,5,3,6};
+		System.out.println(solution1(6, arr));
 	}
 }
