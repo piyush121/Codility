@@ -78,7 +78,7 @@ public class CountDistinctSlices {
 		if(i==A.length-1)
 			while(j<i)
 			{
-				slices+=i-j-1;
+				slices+=i-j;
 				j++;
 			}
 				
